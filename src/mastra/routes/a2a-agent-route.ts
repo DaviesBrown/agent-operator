@@ -77,8 +77,8 @@ export const a2aAgentRoute = registerApiRoute('/a2a/agent/:agentId', {
           artifactId: randomUUID(),
           name: 'ToolResults',
           parts: response.toolResults.map((result) => ({
-            kind: 'text',
-            text: JSON.stringify(result)
+            kind: 'data',
+            data: result
           }))
         });
       }
