@@ -16,7 +16,7 @@
             ],
             "type": "a2a/mastra-a2a-node",
             "typeVersion": 1,
-            "url": "https://your-deployment.mastra.cloud/a2a/agent/shiftAgent"
+            "url": "https://ancient-few-noon.mastra.cloud/api/agent/shiftAgent"
         }
     ],
     "pinData": {},

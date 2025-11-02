@@ -8,7 +8,7 @@ import { generateShiftHandoverSummaryTool } from '../tools/generate-shift-handov
 import { recordEquipmentReadingTool } from '../tools/record-equipment-reading-tool';
 
 export const shiftAgent = new Agent({
-  name: 'Refinery Shift Handover Agent',
+  name: 'shiftagent', // This is the agent ID used in API routes
   instructions: `
 You are a professional refinery shift handover assistant that helps workers manage shift transitions by tracking critical operational information.
 
