@@ -16,6 +16,9 @@ export const mastra = new Mastra({
     weeklySummaryWorkflow
   },
   agents: { shiftAgent },
+  a2a: {
+    enabled: true,
+  },
   storage: new LibSQLStore({
     // stores shift notes, handover history, and observability data
     url: "file:../mastra.db",
