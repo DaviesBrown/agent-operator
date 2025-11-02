@@ -1,0 +1,86 @@
+{
+    "active": true,
+    "category": "utilities",
+    "description": "AI-powered refinery shift handover management agent",
+    "id": "refinery_shift_handover_agent",
+    "long_description": "\n      You are a professional refinery shift handover assistant that helps workers manage shift transitions.\n\n      Your capabilities:\n      - Log operational updates, maintenance activities, alerts, and status changes\n      - Query current shift information by unit or across the facility\n      - Retrieve previous shift handover reports\n      - Generate comprehensive handover summaries automatically\n\n      Core Functions:\n      1. LOG SHIFT NOTES: Accept natural language like \"Log: Unit 5 pump maintenance started, ETA 4 hours\"\n         - Automatically extract unit numbers\n         - Categorize as: maintenance, alert, status, or general\n         - Assign priority levels\n         - Timestamp all entries\n\n      2. QUERY STATUS: Answer questions like:\n         - \"What's the status of Unit 5?\"\n         - \"Show all alerts\"\n         - \"Current shift summary\"\n         - Filter by unit, type, or show entire facility\n\n      3. PREVIOUS SHIFT REPORTS: Provide complete handover summaries from previous shifts\n         - All notes categorized by type\n         - Unresolved items highlighted\n         - Pending actions for current shift\n\n      4. AUTOMATED HANDOVERS: Generate comprehensive summaries at shift change times\n         - Posted at 6:00 AM, 2:00 PM, 10:00 PM daily\n         - Includes all maintenance, alerts, status updates\n         - Clear action items for incoming shift\n\n      SHIFT SCHEDULE:\n      - Day Shift: 6:00 AM - 2:00 PM\n      - Afternoon Shift: 2:00 PM - 10:00 PM\n      - Night Shift: 10:00 PM - 6:00 AM\n\n      SUPPORTED UNITS: 1-20\n      - Reactors (1-4)\n      - Distillation towers (5-7)\n      - Heat exchangers (8-10)\n      - Pumps/compressors (11-15)\n      - Storage tanks (16-20)\n\n      Response Format:\n      - Professional and concise\n      - Safety-conscious\n      - Use emojis for visual scanning: 🔧 (maintenance), ⚠️ (alerts), 📊 (status)\n      - Structured, easy-to-read summaries\n\n      Critical Rules:\n      - Safety information always prioritized\n      - Never invent operational details\n      - All notes timestamped and preserved\n      - No deletion of safety-related information\n",
+    "name": "refinery_shift_agent",
+    "nodes": [
+        {
+            "id": "shift_agent_main",
+            "name": "Refinery Shift Handover Agent",
+            "parameters": {},
+            "position": [
+                600,
+                300
+            ],
+            "type": "a2a/mastra-a2a-node",
+            "typeVersion": 1,
+            "url": "https://your-deployment.mastra.cloud/a2a/agent/shiftAgent"
+        }
+    ],
+    "pinData": {},
+    "settings": {
+        "executionOrder": "v1",
+        "timezone": "America/Chicago"
+    },
+    "short_description": "Intelligent shift handover management for refinery operations",
+    "triggers": [
+        {
+            "id": "shift_handover_6am",
+            "name": "Day Shift Handover (6 AM)",
+            "type": "schedule",
+            "schedule": "0 6 * * *",
+            "timezone": "America/Chicago",
+            "description": "Automated handover summary for Night to Day shift transition"
+        },
+        {
+            "id": "shift_handover_2pm",
+            "name": "Afternoon Shift Handover (2 PM)",
+            "type": "schedule",
+            "schedule": "0 14 * * *",
+            "timezone": "America/Chicago",
+            "description": "Automated handover summary for Day to Afternoon shift transition"
+        },
+        {
+            "id": "shift_handover_10pm",
+            "name": "Night Shift Handover (10 PM)",
+            "type": "schedule",
+            "schedule": "0 22 * * *",
+            "timezone": "America/Chicago",
+            "description": "Automated handover summary for Afternoon to Night shift transition"
+        },
+        {
+            "id": "safety_reminder_day",
+            "name": "Safety Reminder - Day Shift",
+            "type": "schedule",
+            "schedule": "5 6 * * *",
+            "timezone": "America/Chicago",
+            "description": "Daily safety reminder at start of Day shift"
+        },
+        {
+            "id": "safety_reminder_afternoon",
+            "name": "Safety Reminder - Afternoon Shift",
+            "type": "schedule",
+            "schedule": "5 14 * * *",
+            "timezone": "America/Chicago",
+            "description": "Daily safety reminder at start of Afternoon shift"
+        },
+        {
+            "id": "safety_reminder_night",
+            "name": "Safety Reminder - Night Shift",
+            "type": "schedule",
+            "schedule": "5 22 * * *",
+            "timezone": "America/Chicago",
+            "description": "Daily safety reminder at start of Night shift"
+        },
+        {
+            "id": "weekly_summary",
+            "name": "Weekly Maintenance Summary",
+            "type": "schedule",
+            "schedule": "0 6 * * 1",
+            "timezone": "America/Chicago",
+            "description": "Weekly summary of all maintenance activities (every Monday at 6 AM)"
+        }
+    ]
+}
